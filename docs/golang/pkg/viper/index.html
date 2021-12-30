@@ -1,0 +1,200 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="前言 #  版本 v1.7.0
+更详细文档请移步至官方文档
+读取文件 #  viper.SetConfigName(&#34;config&#34;) // 文件名 viper.SetConfigType(&#34;yaml&#34;) // 扩展名 viper.AddConfigPath(&#34;.&#34;) // 添加路径 viper.ReadInConfig() // 读取 写入文件 #  // 写入当前配置路径文件 (by 'viper.AddConfigPath()' and 'viper.SetConfigName()') viper.WriteConfig()	// 覆盖 viper.SafeWriteConfig()	// 不覆盖 // 写入指定的配置文件 viper.WriteConfigAs(&#34;/path/to/my/.config&#34;) // 覆盖 viper.SafeWriteConfigAs(&#34;/path/to/my/.config&#34;) // 不覆盖 运行时重读 #  无需重启服务
+viper.WatchConfig()	// 告诉viper，监听配置，更改时重新载入 // 配置变更事件 viper.OnConfigChange(func(e fsnotify.Event) { fmt.Println(&#34;Config file changed:&#34;, e.Name) // 做一些有趣的事情，like, viper.Unmarshal to update config }) 从io.Reader读取 #  viper.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content>
+<meta property="og:description" content="前言 #  版本 v1.7.0
+更详细文档请移步至官方文档
+读取文件 #  viper.SetConfigName(&#34;config&#34;) // 文件名 viper.SetConfigType(&#34;yaml&#34;) // 扩展名 viper.AddConfigPath(&#34;.&#34;) // 添加路径 viper.ReadInConfig() // 读取 写入文件 #  // 写入当前配置路径文件 (by 'viper.AddConfigPath()' and 'viper.SetConfigName()') viper.WriteConfig()	// 覆盖 viper.SafeWriteConfig()	// 不覆盖 // 写入指定的配置文件 viper.WriteConfigAs(&#34;/path/to/my/.config&#34;) // 覆盖 viper.SafeWriteConfigAs(&#34;/path/to/my/.config&#34;) // 不覆盖 运行时重读 #  无需重启服务
+viper.WatchConfig()	// 告诉viper，监听配置，更改时重新载入 // 配置变更事件 viper.OnConfigChange(func(e fsnotify.Event) { fmt.Println(&#34;Config file changed:&#34;, e.Name) // 做一些有趣的事情，like, viper.Unmarshal to update config }) 从io.Reader读取 #  viper.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wisarmy.github.io/docs/golang/pkg/viper/"><meta property="article:section" content="docs">
+<title>Viper | 遇一只傻喵</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.5611e372cd1b954a7f6fceacc4bb02245920cb316e2a6b5e4387736b067cad28.js integrity="sha256-VhHjcs0blUp/b86sxLsCJFkgyzFuKmteQ4dzawZ8rSg=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>遇一只傻喵</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Golang</span>
+<ul>
+<li>
+<input type=checkbox id=section-c685a5a4136bdfc45e19b77b4363dc70 class=toggle checked>
+<label for=section-c685a5a4136bdfc45e19b77b4363dc70 class="flex justify-between">
+<a href=https://wisarmy.github.io/docs/golang/pkg/>Pkg</a>
+</label>
+<ul>
+<li>
+<a href=https://wisarmy.github.io/docs/golang/pkg/viper/ class=active>Viper</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Rust</span>
+<ul>
+<li>
+<span>Crates</span>
+<ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/posts/>
+动态
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Viper</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#读取文件>读取文件</a></li>
+<li><a href=#写入文件>写入文件</a></li>
+<li><a href=#运行时重读>运行时重读</a></li>
+<li><a href=#从ioreader读取>从io.Reader读取</a></li>
+<li><a href=#设置配置>设置配置</a></li>
+<li><a href=#别名>别名</a></li>
+<li><a href=#with-flag>with flag</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=前言>
+前言
+<a class=anchor href=#%e5%89%8d%e8%a8%80>#</a>
+</h1>
+<p>版本 v1.7.0</p>
+<p>更详细文档请移步至<a href=https://github.com/spf13/viper#what-is-viper>官方文档</a></p>
+<h2 id=读取文件>
+读取文件
+<a class=anchor href=#%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SetConfigName</span>(<span style=color:#e6db74>&#34;config&#34;</span>) <span style=color:#75715e>// 文件名
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SetConfigType</span>(<span style=color:#e6db74>&#34;yaml&#34;</span>) <span style=color:#75715e>// 扩展名
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>AddConfigPath</span>(<span style=color:#e6db74>&#34;.&#34;</span>)   <span style=color:#75715e>// 添加路径
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>ReadInConfig</span>() <span style=color:#75715e>// 读取
+</span></code></pre></div><h2 id=写入文件>
+写入文件
+<a class=anchor href=#%e5%86%99%e5%85%a5%e6%96%87%e4%bb%b6>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#75715e>// 写入当前配置路径文件 (by &#39;viper.AddConfigPath()&#39; and &#39;viper.SetConfigName()&#39;)
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>WriteConfig</span>()	<span style=color:#75715e>// 覆盖
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SafeWriteConfig</span>()	<span style=color:#75715e>// 不覆盖
+</span><span style=color:#75715e>// 写入指定的配置文件
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>WriteConfigAs</span>(<span style=color:#e6db74>&#34;/path/to/my/.config&#34;</span>) <span style=color:#75715e>// 覆盖
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SafeWriteConfigAs</span>(<span style=color:#e6db74>&#34;/path/to/my/.config&#34;</span>) <span style=color:#75715e>// 不覆盖
+</span></code></pre></div><h2 id=运行时重读>
+运行时重读
+<a class=anchor href=#%e8%bf%90%e8%a1%8c%e6%97%b6%e9%87%8d%e8%af%bb>#</a>
+</h2>
+<p>无需重启服务</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>WatchConfig</span>()	<span style=color:#75715e>// 告诉viper，监听配置，更改时重新载入
+</span><span style=color:#75715e>// 配置变更事件
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>OnConfigChange</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#a6e22e>fsnotify</span>.<span style=color:#a6e22e>Event</span>) {
+	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Config file changed:&#34;</span>, <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Name</span>)
+    <span style=color:#75715e>// 做一些有趣的事情，like, viper.Unmarshal to update config
+</span><span style=color:#75715e></span>})
+</code></pre></div><h2 id=从ioreader读取>
+从io.Reader读取
+<a class=anchor href=#%e4%bb%8eioreader%e8%af%bb%e5%8f%96>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SetConfigType</span>(<span style=color:#e6db74>&#34;toml&#34;</span>)	<span style=color:#75715e>// 设置配置类型
+</span><span style=color:#75715e></span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>configExample</span> = <span style=color:#e6db74>`debug = true`</span>	<span style=color:#75715e>// 定义配置内容
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>ReadConfig</span>(<span style=color:#a6e22e>bytes</span>.<span style=color:#a6e22e>NewBufferString</span>(<span style=color:#a6e22e>configExample</span>))	<span style=color:#75715e>// bytes.Buffer实现了io.Reader接口
+</span><span style=color:#75715e></span><span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>GetBool</span>(<span style=color:#e6db74>&#34;debug&#34;</span>)) <span style=color:#75715e>// true
+</span></code></pre></div><h2 id=设置配置>
+设置配置
+<a class=anchor href=#%e8%ae%be%e7%bd%ae%e9%85%8d%e7%bd%ae>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SetDefault</span>(<span style=color:#e6db74>&#34;debug&#34;</span>, <span style=color:#66d9ef>false</span>)	<span style=color:#75715e>// 设置默认值
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>SetDefault</span>(<span style=color:#e6db74>&#34;jwt&#34;</span>, <span style=color:#66d9ef>map</span>[<span style=color:#66d9ef>string</span>]<span style=color:#66d9ef>string</span>{<span style=color:#e6db74>&#34;aglo&#34;</span>: <span style=color:#e6db74>&#34;HS256&#34;</span>, <span style=color:#e6db74>&#34;secret&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>})	<span style=color:#75715e>// 更复杂结构
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;debug&#34;</span>, <span style=color:#66d9ef>true</span>)	<span style=color:#75715e>// 有时我们需要在程序逻辑中更改或命令行flag来控制
+</span></code></pre></div><h2 id=别名>
+别名
+<a class=anchor href=#%e5%88%ab%e5%90%8d>#</a>
+</h2>
+<p>多个键引用一个值, 如果配置名称需变更，无需改动业务程序</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>RegisterAlias</span>(<span style=color:#e6db74>&#34;glad&#34;</span>, <span style=color:#e6db74>&#34;pleased&#34;</span>)
+<span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>Set</span>(<span style=color:#e6db74>&#34;glad&#34;</span>, <span style=color:#e6db74>&#34;happy&#34;</span>)
+<span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>GetString</span>(<span style=color:#e6db74>&#34;pleased&#34;</span>)	<span style=color:#75715e>// happy
+</span></code></pre></div><h2 id=with-flag>
+with flag
+<a class=anchor href=#with-flag>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#75715e>// 使用标准库 flag
+</span><span style=color:#75715e></span><span style=color:#a6e22e>flag</span>.<span style=color:#a6e22e>String</span>(<span style=color:#e6db74>&#34;config&#34;</span>, <span style=color:#e6db74>&#34;app.toml&#34;</span>, <span style=color:#e6db74>&#34;config filename&#34;</span>)
+<span style=color:#a6e22e>flag</span>.<span style=color:#a6e22e>Parse</span>()
+<span style=color:#75715e>// 设置pflag
+</span><span style=color:#75715e></span><span style=color:#a6e22e>pflag</span>.<span style=color:#a6e22e>CommandLine</span>.<span style=color:#a6e22e>AddGoFlagSet</span>(<span style=color:#a6e22e>flag</span>.<span style=color:#a6e22e>CommandLine</span>)	<span style=color:#75715e>// 若以上使用pflag，无需此操作
+</span><span style=color:#75715e></span><span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>BindPFlags</span>(<span style=color:#a6e22e>pflag</span>.<span style=color:#a6e22e>CommandLine</span>)
+<span style=color:#a6e22e>viper</span>.<span style=color:#a6e22e>GetString</span>(<span style=color:#e6db74>&#34;config&#34;</span>)
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#读取文件>读取文件</a></li>
+<li><a href=#写入文件>写入文件</a></li>
+<li><a href=#运行时重读>运行时重读</a></li>
+<li><a href=#从ioreader读取>从io.Reader读取</a></li>
+<li><a href=#设置配置>设置配置</a></li>
+<li><a href=#别名>别名</a></li>
+<li><a href=#with-flag>with flag</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

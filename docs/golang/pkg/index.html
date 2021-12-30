@@ -1,0 +1,117 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="  Viper  前言 # 版本 v1.7.0 更详细文档请移步至官方文档 读取文件 # viper.SetConfigName(&#34;config&#34;) // 文件名 viper.SetConfigType(&#34;yaml&#34;) // 扩展名 viper.AddConfigPath(&#34;.&#34;) // 添加路径 viper.ReadInConfig() // 读取 写入文件 # // 写入当前配置路径文件 (by 'viper.AddConfigPath()' and 'viper.SetConfigName()') viper.WriteConfig()	// 覆盖 viper.SafeWriteConfig()	// 不覆盖 // 写入指定的配置文件 viper.WriteConfigAs(&#34;/path/to/my/.config&#34;) // 覆盖 viper.SafeWriteConfigAs(&#34;/path/to/my/.config&#34;) // 不覆盖 运行时重读 # 无需重启服务 viper.WatchConfig()	// 告诉viper，监听配置，更改时重新载入 // 配置变更事件 viper.OnConfigChange(func(e fsnotify.Event) { fmt.Println(&#34;Config file changed:&#34;, e.Name) // 做一些有趣的事情，like, viper.Unmarshal to update config }) 从io.Reader读取 # viper.   ">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content>
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wisarmy.github.io/docs/golang/pkg/">
+<title>Pkg | 遇一只傻喵</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.5611e372cd1b954a7f6fceacc4bb02245920cb316e2a6b5e4387736b067cad28.js integrity="sha256-VhHjcs0blUp/b86sxLsCJFkgyzFuKmteQ4dzawZ8rSg=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=https://wisarmy.github.io/docs/golang/pkg/index.xml title=遇一只傻喵>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>遇一只傻喵</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Golang</span>
+<ul>
+<li>
+<input type=checkbox id=section-c685a5a4136bdfc45e19b77b4363dc70 class=toggle checked>
+<label for=section-c685a5a4136bdfc45e19b77b4363dc70 class="flex justify-between">
+<a href=https://wisarmy.github.io/docs/golang/pkg/ class=active>Pkg</a>
+</label>
+<ul>
+<li>
+<a href=https://wisarmy.github.io/docs/golang/pkg/viper/>Viper</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Rust</span>
+<ul>
+<li>
+<span>Crates</span>
+<ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/posts/>
+动态
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Pkg</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents></nav>
+</aside>
+</header>
+<article class=markdown><dl>
+<dt>
+<a href=/docs/golang/pkg/viper/>Viper</a>
+</dt>
+<dd class=markdown-inner>
+前言 # 版本 v1.7.0
+更详细文档请移步至官方文档
+读取文件 # viper.SetConfigName("config") // 文件名 viper.SetConfigType("yaml") // 扩展名 viper.AddConfigPath(".") // 添加路径 viper.ReadInConfig() // 读取 写入文件 # // 写入当前配置路径文件 (by 'viper.AddConfigPath()' and 'viper.SetConfigName()') viper.WriteConfig() // 覆盖 viper.SafeWriteConfig() // 不覆盖 // 写入指定的配置文件 viper.WriteConfigAs("/path/to/my/.config") // 覆盖 viper.SafeWriteConfigAs("/path/to/my/.config") // 不覆盖 运行时重读 # 无需重启服务
+viper.WatchConfig() // 告诉viper，监听配置，更改时重新载入 // 配置变更事件 viper.OnConfigChange(func(e fsnotify.Event) { fmt.Println("Config file changed:", e.Name) // 做一些有趣的事情，like, viper.Unmarshal to update config }) 从io.Reader读取 # viper.
+</dd>
+</dl>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents></nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
