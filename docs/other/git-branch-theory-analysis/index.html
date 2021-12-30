@@ -1,0 +1,227 @@
+<!doctype html><html lang=zh dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="前言 #  1991年Linus Torvalds发明了linux内核,从此不断发展壮大,成为当前最流行操作系统之一 2002年,linus选用商业版本控制系统BitKeeper——Bitmover公司,来管理代码 2005年,linux花费十天时间用C写了一个分布式版本控制系统——git,一个月之内linux源码已用git管理 2016年,BitKeeper开源
+git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.rb LICENSE $ git commit -m 'The initial commit of my project' // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,提交信息等,还包括指向树对象的指针 // 现在，Git 仓库中有五个对象： // 三个 blob 对象（保存着文件快照） // 一个 tree 对象 （记录着目录结构和 blob 对象索引） // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,等所有提交信息,还包括指向tree对象的指针,父对象的指针 第一次提交没有父对象,之后提交父对象指向上次提交 创建分支 #  $ git branch testing git有一个特殊的HEAD指针,指向当前分支 $ git switch testing //切换分支只是更改了HEAD指针的指向 // 不妨提交一次 $ vim test.rb $ git commit -a -m 'made a change' // testing分支向前移动 // 切回master分支, HEAD指向master,工作区恢复到master所指向的快照内容 $ git switch master // 不妨再做次提交 $ vim test.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="git分支原理解析">
+<meta property="og:description" content="前言 #  1991年Linus Torvalds发明了linux内核,从此不断发展壮大,成为当前最流行操作系统之一 2002年,linus选用商业版本控制系统BitKeeper——Bitmover公司,来管理代码 2005年,linux花费十天时间用C写了一个分布式版本控制系统——git,一个月之内linux源码已用git管理 2016年,BitKeeper开源
+git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.rb LICENSE $ git commit -m 'The initial commit of my project' // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,提交信息等,还包括指向树对象的指针 // 现在，Git 仓库中有五个对象： // 三个 blob 对象（保存着文件快照） // 一个 tree 对象 （记录着目录结构和 blob 对象索引） // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,等所有提交信息,还包括指向tree对象的指针,父对象的指针 第一次提交没有父对象,之后提交父对象指向上次提交 创建分支 #  $ git branch testing git有一个特殊的HEAD指针,指向当前分支 $ git switch testing //切换分支只是更改了HEAD指针的指向 // 不妨提交一次 $ vim test.rb $ git commit -a -m 'made a change' // testing分支向前移动 // 切回master分支, HEAD指向master,工作区恢复到master所指向的快照内容 $ git switch master // 不妨再做次提交 $ vim test.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wisarmy.github.io/docs/other/git-branch-theory-analysis/"><meta property="article:section" content="docs">
+<title>git分支原理解析 | 遇一只傻喵</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/zh.search.min.c09950c0855a7e41f90a0fea6c296cdcb7c6a2dc4ac64f419ccb848521b8a619.js integrity="sha256-wJlQwIVafkH5Cg/qbCls3LfGotxKxk9BnMuEhSG4phk=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>遇一只傻喵</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=搜索 aria-label=搜索 maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Golang</span>
+<ul>
+<li>
+<input type=checkbox id=section-c685a5a4136bdfc45e19b77b4363dc70 class=toggle>
+<label for=section-c685a5a4136bdfc45e19b77b4363dc70 class="flex justify-between">
+<a href=https://wisarmy.github.io/docs/golang/pkg/>Pkg</a>
+</label>
+<ul>
+<li>
+<a href=https://wisarmy.github.io/docs/golang/pkg/viper/>Viper</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Rust</span>
+<ul>
+<li>
+<span>Crates</span>
+<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<span>其他</span>
+<ul>
+<li>
+<a href=https://wisarmy.github.io/docs/other/git-branch-theory-analysis/ class=active>git分支原理解析</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<a href=/posts/>
+动态
+</a>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>git分支原理解析</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#git分支>git分支</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h3 id=前言>
+前言
+<a class=anchor href=#%e5%89%8d%e8%a8%80>#</a>
+</h3>
+<p>1991年<a href=https://baike.baidu.com/item/Linus%20Torvalds/9336769>Linus Torvalds</a>发明了linux内核,从此不断发展壮大,成为当前最流行操作系统<del>之一</del>
+2002年,linus选用商业版本控制系统BitKeeper——Bitmover公司,来管理代码
+2005年,linux花费十天时间用C写了一个分布式版本控制系统——git,一个月之内linux源码已用git管理
+2016年,BitKeeper开源</p>
+<h3 id=git分支>
+git分支
+<a class=anchor href=#git%e5%88%86%e6%94%af>#</a>
+</h3>
+<pre tabindex=0><code>// 进行一次提交,看git的工作原理
+$ git add README test.rb LICENSE
+$ git commit -m 'The initial commit of my project'
+// 一个commit对象 包含指向快照的指针,作者姓名,邮箱,提交信息等,还包括指向树对象的指针
+// 现在，Git 仓库中有五个对象：
+// 三个 blob 对象（保存着文件快照）
+// 一个 tree 对象 （记录着目录结构和 blob 对象索引）
+// 一个commit对象 包含指向快照的指针,作者姓名,邮箱,等所有提交信息,还包括指向tree对象的指针,父对象的指针
+</code></pre><p><img src=/images/1595494028041-788d4657-c2be-4e5a-9d4d-b9afa43832d2.png alt=image.png></p>
+<p>第一次提交没有父对象,之后提交父对象指向上次提交
+<img src=/images/1595494094005-4d7ad2dd-6eab-4b9a-aa0a-83e20888723c.png alt=image.png></p>
+<h4 id=创建分支>
+创建分支
+<a class=anchor href=#%e5%88%9b%e5%bb%ba%e5%88%86%e6%94%af>#</a>
+</h4>
+<pre tabindex=0><code>$ git branch testing
+</code></pre><p><img src=/images/1595494106162-948db8a5-9d42-4f07-b281-d6f97db8723b.png alt=image.png>
+git有一个特殊的HEAD指针,指向当前分支
+<img src=/images/1595494116171-e7bd5123-fee4-423f-a50f-ec7764622536.png alt=image.png></p>
+<pre tabindex=0><code>$ git switch testing //切换分支只是更改了HEAD指针的指向
+</code></pre><p><img src=/images/1595494125592-0229c7ef-e6eb-4b86-a881-825355ea4948.png alt=image.png></p>
+<pre tabindex=0><code>// 不妨提交一次
+$ vim test.rb
+$ git commit -a -m 'made a change'
+// testing分支向前移动
+</code></pre><p><img src=/images/1595495360507-8efe5af9-7885-40b7-8519-67a34c99a611.png alt=image.png></p>
+<pre tabindex=0><code>// 切回master分支, HEAD指向master,工作区恢复到master所指向的快照内容
+$ git switch master
+</code></pre><p><img src=/images/1595495455513-3f59000c-5e6c-4c01-9e9b-5eff3d5d210d.png alt=image.png></p>
+<pre tabindex=0><code>// 不妨再做次提交
+$ vim test.rb
+$ git commit -a -m 'made other changes'
+// 出现了历史性的分叉
+</code></pre><p><img src=/images/1595495606034-991bad49-99ae-4f29-b032-7fdb0e6c9cd7.png alt=image.png></p>
+<h4 id=分支合并>
+分支合并
+<a class=anchor href=#%e5%88%86%e6%94%af%e5%90%88%e5%b9%b6>#</a>
+</h4>
+<p><img src=/images/1595496208856-26c6fd6e-e4f2-4e6c-b009-62774cc1d91e.png alt=image.png></p>
+<pre tabindex=0><code>// 新建一个分支iss53,并切换到该分支
+$ git checkout -b iss53
+Switched to a new branch &quot;iss53&quot;
+</code></pre><p><img src=/images/1595496260273-90e10a20-7c47-4086-bd8a-292ef180ce0a.png alt=image.png></p>
+<pre tabindex=0><code>$ vim index.html
+$ git commit -a -m 'added a new footer [issue 53]'
+// 做一次提交,iss53向前推进
+</code></pre><p><img src=/images/1595496290078-34ac726c-6e5f-412d-817e-47802ba6a0aa.png alt=image.png></p>
+<pre tabindex=0><code>$ git checkout master
+$ git checkout -b hotfix
+$ git commit -a -m 'fixed the broken email address'
+ // 切回master分支
+ // 创建新分支hotfix,并切换到该分支
+ // 做次提交
+</code></pre><p><img src=/images/1595496620651-f0581364-9444-4283-9f48-171485070a32.png alt=image.png></p>
+<pre tabindex=0><code>$ git checkout master
+$ git merge hotfix
+// 切换到master, 合并hotfix分支
+// 当你试图合并两个分支时， 如果顺着一个分支走下去能够到达另一个分支
+// 那么 Git 在合并两者的时候， 只会简单的将指针向前推进（指针右移）
+// 因为这种情况下的合并操作没有需要解决的分歧——这就叫做 “快进（fast-forward）”。
+</code></pre><p><img src=/images/1595496652662-8a322c46-bff5-4a11-a388-fbb2eb915990.png alt=image.png></p>
+<pre tabindex=0><code>$ git branch -d hotfix
+// 合并过后该分支已无用,应删除
+</code></pre><pre tabindex=0><code>$ git checkout iss53
+$ git commit -a -m 'finished the new footer [issue 53]'
+// 切回iss53分支,继续我们的工作
+</code></pre><p><img src=/images/1595496764111-ab43fef2-9e78-4f47-828c-87e5cddea568.png alt=image.png></p>
+<pre tabindex=0><code>$ git checkout master
+$ git merge iss53
+// 现已经修复了iss53,把它合并到master上
+</code></pre><p><img src=/images/1595496853355-a5ebaee0-dfdf-48c1-8bec-669853ca77b4.png alt=image.png>
+你的开发历史从一个更早的地方开始分叉开来（diverged）。 因为，<code>master</code> 分支所在提交并不是 <code>iss53</code> 分支所在提交的直接祖先，Git 不得不做一些额外的工作。 出现这种情况的时候，Git 会使用两个分支的末端所指的快照（<code>C4</code> 和 <code>C5</code>）以及这两个分支的公共祖先（<code>C2</code>），做一个简单的三方合并。
+<img src=/images/1595497039584-4f27a639-fe4c-46f1-9ed7-85b733bb3aab.png alt=image.png></p>
+<pre tabindex=0><code>$ git branch -d iss53
+// 删除该分支
+</code></pre><h4 id=合并方式>
+合并方式
+<a class=anchor href=#%e5%90%88%e5%b9%b6%e6%96%b9%e5%bc%8f>#</a>
+</h4>
+<pre tabindex=0><code>$ git merge --no-ff {branch}
+// 使用--no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法
+</code></pre><p><img src=/images/1595498418942-938fa146-a441-4bba-9b27-c56ffc940e49.png alt=image.png><img src=/images/1595498426283-2ed721a5-7860-4960-9291-9d95bcdd4623.png alt=image.png></p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#前言>前言</a></li>
+<li><a href=#git分支>git分支</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
