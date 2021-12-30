@@ -1,0 +1,4 @@
+baseURL = 'https://wisarmy.github.io/'
+languageCode = 'zh-cn'
+title = '遇一只傻喵'
+theme = "ananke"
