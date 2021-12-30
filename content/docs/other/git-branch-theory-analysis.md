@@ -25,7 +25,7 @@ $ git commit -m 'The initial commit of my project'
 
 第一次提交没有父对象,之后提交父对象指向上次提交
 ![image.png](/images/1595494094005-4d7ad2dd-6eab-4b9a-aa0a-83e20888723c.png)
-#### 创建分支
+### 创建分支
 ```
 $ git branch testing
 ```
@@ -57,7 +57,7 @@ $ git commit -a -m 'made other changes'
 // 出现了历史性的分叉
 ```
 ![image.png](/images/1595495606034-991bad49-99ae-4f29-b032-7fdb0e6c9cd7.png)
-#### 分支合并
+### 分支合并
 ![image.png](/images/1595496208856-26c6fd6e-e4f2-4e6c-b009-62774cc1d91e.png)
 ```
 // 新建一个分支iss53,并切换到该分支
@@ -111,7 +111,7 @@ $ git merge iss53
 $ git branch -d iss53
 // 删除该分支
 ```
-#### 合并方式
+### 合并方式
 
 
 ```
