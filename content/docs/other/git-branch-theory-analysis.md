@@ -1,7 +1,7 @@
 ---
 weight: 3
 bookFlatSection: true
-title: "git分支原理解析"
+title: "Git分支原理解析"
 ---
 
 ### 前言
