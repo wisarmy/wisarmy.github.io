@@ -5,17 +5,17 @@
 <meta name=description content="前言 #  1991年Linus Torvalds发明了linux内核,从此不断发展壮大,成为当前最流行操作系统之一 2002年,linus选用商业版本控制系统BitKeeper——Bitmover公司,来管理代码 2005年,linux花费十天时间用C写了一个分布式版本控制系统——git,一个月之内linux源码已用git管理 2016年,BitKeeper开源
 git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.rb LICENSE $ git commit -m 'The initial commit of my project' // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,提交信息等,还包括指向树对象的指针 // 现在，Git 仓库中有五个对象： // 三个 blob 对象（保存着文件快照） // 一个 tree 对象 （记录着目录结构和 blob 对象索引） // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,等所有提交信息,还包括指向tree对象的指针,父对象的指针 第一次提交没有父对象,之后提交父对象指向上次提交 创建分支 #  $ git branch testing git有一个特殊的HEAD指针,指向当前分支 $ git switch testing //切换分支只是更改了HEAD指针的指向 // 不妨提交一次 $ vim test.rb $ git commit -a -m 'made a change' // testing分支向前移动 // 切回master分支, HEAD指向master,工作区恢复到master所指向的快照内容 $ git switch master // 不妨再做次提交 $ vim test.">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="git分支原理解析">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Git分支原理解析">
 <meta property="og:description" content="前言 #  1991年Linus Torvalds发明了linux内核,从此不断发展壮大,成为当前最流行操作系统之一 2002年,linus选用商业版本控制系统BitKeeper——Bitmover公司,来管理代码 2005年,linux花费十天时间用C写了一个分布式版本控制系统——git,一个月之内linux源码已用git管理 2016年,BitKeeper开源
 git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.rb LICENSE $ git commit -m 'The initial commit of my project' // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,提交信息等,还包括指向树对象的指针 // 现在，Git 仓库中有五个对象： // 三个 blob 对象（保存着文件快照） // 一个 tree 对象 （记录着目录结构和 blob 对象索引） // 一个commit对象 包含指向快照的指针,作者姓名,邮箱,等所有提交信息,还包括指向tree对象的指针,父对象的指针 第一次提交没有父对象,之后提交父对象指向上次提交 创建分支 #  $ git branch testing git有一个特殊的HEAD指针,指向当前分支 $ git switch testing //切换分支只是更改了HEAD指针的指向 // 不妨提交一次 $ vim test.rb $ git commit -a -m 'made a change' // testing分支向前移动 // 切回master分支, HEAD指向master,工作区恢复到master所指向的快照内容 $ git switch master // 不妨再做次提交 $ vim test.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://wisarmy.github.io/docs/other/git-branch-theory-analysis/"><meta property="article:section" content="docs">
-<title>git分支原理解析 | 遇一只傻喵</title>
+<title>Git分支原理解析 | 遇一只傻喵</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
-<script defer src=/zh.search.min.c09950c0855a7e41f90a0fea6c296cdcb7c6a2dc4ac64f419ccb848521b8a619.js integrity="sha256-wJlQwIVafkH5Cg/qbCls3LfGotxKxk9BnMuEhSG4phk=" crossorigin=anonymous></script>
+<script defer src=/zh.search.min.c2dfc7c2b53e4df61cad09983a229151434037ec85f9dd5d6b02f32a096d9ed3.js integrity="sha256-wt/HwrU+TfYcrQmYOiKRUUNAN+yF+d1dawLzKgltntM=" crossorigin=anonymous></script>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -40,7 +40,7 @@ git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.r
 <li>
 <input type=checkbox id=section-c685a5a4136bdfc45e19b77b4363dc70 class=toggle>
 <label for=section-c685a5a4136bdfc45e19b77b4363dc70 class="flex justify-between">
-<a href=https://wisarmy.github.io/docs/golang/pkg/>Pkg</a>
+<a role=button>Pkg</a>
 </label>
 <ul>
 <li>
@@ -61,10 +61,18 @@ git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.r
 </ul>
 </li>
 <li>
+<span>Linux</span>
+<ul>
+<li>
+<a href=https://wisarmy.github.io/docs/linux/cmd/>常用命令</a>
+</li>
+</ul>
+</li>
+<li>
 <span>其他</span>
 <ul>
 <li>
-<a href=https://wisarmy.github.io/docs/other/git-branch-theory-analysis/ class=active>git分支原理解析</a>
+<a href=https://wisarmy.github.io/docs/other/git-branch-theory-analysis/ class=active>Git分支原理解析</a>
 </li>
 </ul>
 </li>
@@ -86,7 +94,7 @@ git分支 #  // 进行一次提交,看git的工作原理 $ git add README test.r
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>git分支原理解析</strong>
+<strong>Git分支原理解析</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>

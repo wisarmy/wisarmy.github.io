@@ -2,19 +2,20 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content>
+<meta name=description content="前言 #  命令按字母排序
+awk #  # 每行 替换字符串A为B，并打印第一列(空格或TAB分割) awk '{ sub(/A/, &#34;B&#34;); print $1}' ">
 <meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Categories">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://wisarmy.github.io/categories/">
-<title>Categories | 遇一只傻喵</title>
+<meta name=color-scheme content="light dark"><meta property="og:title" content="常用命令">
+<meta property="og:description" content="前言 #  命令按字母排序
+awk #  # 每行 替换字符串A为B，并打印第一列(空格或TAB分割) awk '{ sub(/A/, &#34;B&#34;); print $1}' ">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wisarmy.github.io/docs/linux/cmd/"><meta property="article:section" content="docs">
+<title>常用命令 | 遇一只傻喵</title>
 <link rel=manifest href=/manifest.json>
 <link rel=icon href=/favicon.png type=image/x-icon>
 <link rel=stylesheet href=/book.min.46181bc93375ba932026e753b37c40e6ff8bb16a9ef770c78bcc663e4577b1ba.css integrity="sha256-RhgbyTN1upMgJudTs3xA5v+LsWqe93DHi8xmPkV3sbo=" crossorigin=anonymous>
 <script defer src=/flexsearch.min.js></script>
 <script defer src=/zh.search.min.c2dfc7c2b53e4df61cad09983a229151434037ec85f9dd5d6b02f32a096d9ed3.js integrity="sha256-wt/HwrU+TfYcrQmYOiKRUUNAN+yF+d1dawLzKgltntM=" crossorigin=anonymous></script>
-<link rel=alternate type=application/rss+xml href=https://wisarmy.github.io/categories/index.xml title=遇一只傻喵>
 </head>
 <body dir=ltr>
 <input type=checkbox class="hidden toggle" id=menu-control>
@@ -63,7 +64,7 @@
 <span>Linux</span>
 <ul>
 <li>
-<a href=https://wisarmy.github.io/docs/linux/cmd/>常用命令</a>
+<a href=https://wisarmy.github.io/docs/linux/cmd/ class=active>常用命令</a>
 </li>
 </ul>
 </li>
@@ -93,49 +94,47 @@
 <label for=menu-control>
 <img src=/svg/menu.svg class=book-icon alt=Menu>
 </label>
-<strong>Categories</strong>
+<strong>常用命令</strong>
 <label for=toc-control>
 <img src=/svg/toc.svg class=book-icon alt="Table of Contents">
 </label>
 </div>
 <aside class="hidden clearfix">
-<nav>
+<nav id=TableOfContents>
 <ul>
-<li class=book-section-flat>
-<strong>Categories</strong>
-<ul>
-</ul>
-</li>
-<li class=book-section-flat>
-<strong>Tags</strong>
-<ul>
-</ul>
-</li>
+<li><a href=#前言>前言</a></li>
+<li><a href=#awk>awk</a></li>
 </ul>
 </nav>
 </aside>
 </header>
+<article class=markdown><h2 id=前言>
+前言
+<a class=anchor href=#%e5%89%8d%e8%a8%80>#</a>
+</h2>
+<p>命令按字母排序</p>
+<h2 id=awk>
+awk
+<a class=anchor href=#awk>#</a>
+</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># 每行 替换字符串A为B，并打印第一列(空格或TAB分割)</span>
+ awk <span style=color:#e6db74>&#39;{ sub(/A/, &#34;B&#34;); print $1}&#39;</span>
+</code></pre></div></article>
 <footer class=book-footer>
 <div class="flex flex-wrap justify-between">
 </div>
 <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
 </footer>
+<div class=book-comments>
+</div>
 <label for=menu-control class="hidden book-menu-overlay"></label>
 </div>
 <aside class=book-toc>
 <div class=book-toc-content>
-<nav>
+<nav id=TableOfContents>
 <ul>
-<li class=book-section-flat>
-<strong>Categories</strong>
-<ul>
-</ul>
-</li>
-<li class=book-section-flat>
-<strong>Tags</strong>
-<ul>
-</ul>
-</li>
+<li><a href=#前言>前言</a></li>
+<li><a href=#awk>awk</a></li>
 </ul>
 </nav>
 </div>
